@@ -1,16 +1,25 @@
 # ApplyFlow
 
-AI-powered auto-apply system for Australian software engineering jobs.
+**ApplyFlow** is an AI-powered auto-apply system designed to streamline the job application process for Australian software engineering roles. With our modern startup approach and efficient MVP (Minimum Viable Product), we aim to revolutionize how recruiters and investors find top talent.
 
-## How it works
+## How it Works
 
-1. Upload your PDF resume — Claude AI parses it into a structured profile
-2. Set preferences: AU city, salary range, tech stack, match score threshold
-3. Hit **Start Run** — the system:
-   - Scrapes Seek.com.au for software engineer roles
-   - Scores each job against your profile using Claude AI (0–100)
-   - Auto-fills and submits Quick Apply forms via Playwright browser automation
-4. Track every application in the dashboard
+1. **Upload Your Resume**: Our advanced AI parses your PDF resume into a structured profile.
+2. **Set Preferences**: Define your preferences, including location, salary range, tech stack, and match score threshold.
+3. **Start an Auto-Apply Run**: Initiate the system to scrape Seek.com.au for software engineer roles, score each job against your profile using Claude AI (0–100), and auto-fill and submit Quick Apply forms via Playwright browser automation.
+4. **Track Your Applications**: Monitor every application in real-time from the dashboard.
+
+## Architecture
+
+**ApplyFlow** is built on a robust architecture that ensures scalability and reliability:
+
+- **Backend**: Developed with Python 3.12 and FastAPI, providing a high-performance API for managing user profiles, job preferences, and auto-apply runs.
+- **Frontend**: Built using Next.js 14 (App Router) and Tailwind CSS, offering a modern and intuitive user interface.
+- **Database**: Utilizes SQLite in development and PostgreSQL in production for efficient data storage and retrieval.
+- **ORM**: SQLAlchemy 2.0 ensures seamless interaction with the database.
+- **AI**: Claude AI is used for advanced parsing and scoring of job descriptions against user profiles.
+- **Browser Automation**: Playwright handles form submissions on Seek.com.au, ensuring compatibility across different browsers.
+- **PDF Parsing**: pypdf library converts PDF resumes into structured data.
 
 ## Tech Stack
 
@@ -25,35 +34,7 @@ AI-powered auto-apply system for Australian software engineering jobs.
 | PDF Parsing | pypdf |
 | Container | Docker + Docker Compose |
 
-## Project Structure
-
-```
-ApplyFlow/
-├── backend/
-│   ├── main.py              # FastAPI entry point
-│   ├── config.py            # Settings from .env
-│   ├── database.py          # SQLAlchemy engine + session
-│   ├── models/              # SQLAlchemy ORM models
-│   ├── schemas/             # Pydantic v2 request/response schemas
-│   ├── routers/             # API route handlers
-│   └── services/
-│       ├── claude_service.py          # Claude AI calls
-│       ├── resume_parser.py           # PDF to structured profile
-│       ├── seek_scraper.py            # Playwright Seek.com.au scraper
-│       ├── seek_applier.py            # Playwright form submission
-│       └── auto_apply_orchestrator.py # End-to-end orchestration
-└── frontend/
-    ├── app/                 # Next.js App Router pages
-    │   ├── page.tsx         # Dashboard
-    │   ├── profile/         # Resume upload + profile editor
-    │   ├── preferences/     # Job search preferences
-    │   ├── auto-apply/      # Trigger runs + live status
-    │   └── applications/    # View all tracked applications
-    ├── components/          # Navbar, StatusBadge
-    └── lib/api.ts           # Typed API client
-```
-
-## Local Development
+## Setup Instructions
 
 ### Prerequisites
 
@@ -86,7 +67,7 @@ npm run dev
 
 UI runs at **http://localhost:3000**
 
-## Docker (full stack)
+## Docker (Full Stack)
 
 ```bash
 cp backend/.env.example .env
@@ -100,20 +81,28 @@ docker compose up --build
 | Backend API | http://localhost:8000 |
 | API Docs | http://localhost:8000/docs |
 
-## API Endpoints
+## API Workflow
 
-| Method | Path | Description |
-|---|---|---|
-| POST | `/api/v1/profile/resume` | Upload PDF resume (AI parses it) |
-| GET / PUT | `/api/v1/profile` | View / update profile |
-| GET / PUT | `/api/v1/profile/preferences` | Job search preferences |
-| POST | `/api/v1/auto-apply/run` | Start an auto-apply run |
-| GET | `/api/v1/auto-apply/runs/{id}` | Poll run status |
-| GET | `/api/v1/applications` | List all tracked applications |
-| PATCH | `/api/v1/applications/{id}/status` | Update application status |
+1. **Upload Resume**: Use the `/api/v1/profile/resume` endpoint to upload your PDF resume.
+2. **Set Preferences**: Manage your job search preferences using the `/api/v1/profile/preferences` endpoint.
+3. **Start Run**: Initiate an auto-apply run with the `/api/v1/auto-apply/run` endpoint.
+4. **Track Runs**: Poll the status of runs using the `/api/v1/auto-apply/runs/{id}` endpoint.
+5. **List Applications**: Retrieve all tracked applications with the `/api/v1/applications` endpoint.
 
-## Notes
+## Job Filtering Pipeline
 
-- **Seek selectors may drift.** If scraping breaks, update `data-automation` selectors in `backend/services/seek_scraper.py` and `seek_applier.py`.
-- **Seek Quick Apply only.** Jobs that redirect to a company website are skipped in this MVP.
-- This is a single-user system. Multi-user auth is planned for a future version.
+**ApplyFlow** employs a two-step filtering pipeline to ensure efficient and accurate job matching:
+
+1. **Cheap Filtering**: Initial filtering based on location, salary range, and tech stack is performed locally.
+2. **LLM Scoring**: Advanced scoring using Claude AI ensures that only the most relevant jobs are submitted.
+
+## Badges
+
+[![GitHub stars](https://img.shields.io/github/stars/your-repo.svg?style=social)](https://github.com/your-repo)
+[![GitHub forks](https://img.shields.io/github/forks/your-repo.svg?style=social)](https://github.com/your-repo)
+
+## Conclusion
+
+**ApplyFlow** is a powerful tool for recruiters and investors looking to streamline their job application process. With its modern architecture, efficient MVP, and advanced AI capabilities, we are confident that it will revolutionize the way you find top talent.
+
+Join us on this exciting journey as we continue to develop and improve **ApplyFlow**.
