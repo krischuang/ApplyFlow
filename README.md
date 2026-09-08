@@ -1,6 +1,8 @@
 # ApplyFlow
 
-**ApplyFlow** is an AI-powered auto-apply system designed to streamline the job application process for Australian software engineering roles. With our modern startup approach and efficient MVP (Minimum Viable Product), we aim to revolutionize how recruiters and investors find top talent.
+**ApplyFlow** is a personal job-application automation tool for Australian software engineering roles. It parses a resume into a structured profile, scores scraped job listings against that profile with Claude, and auto-fills Quick Apply forms on Seek.com.au via Playwright.
+
+The repository contains two independent backend implementations of the same job-application domain — a FastAPI (Python) service used by the running app, and a Spring Boot (Java) service implementing the same `/api/v1/applications` API as a polyglot exercise.
 
 ## How it Works
 
@@ -33,6 +35,7 @@
 | Browser Automation | Playwright (Python) |
 | PDF Parsing | pypdf |
 | Container | Docker + Docker Compose |
+| Alternate backend | Spring Boot 3.2 (Java 21) — same domain, implemented independently |
 
 ## Setup Instructions
 
@@ -96,13 +99,10 @@ docker compose up --build
 1. **Cheap Filtering**: Initial filtering based on location, salary range, and tech stack is performed locally.
 2. **LLM Scoring**: Advanced scoring using Claude AI ensures that only the most relevant jobs are submitted.
 
-## Badges
+## Status
 
-[![GitHub stars](https://img.shields.io/github/stars/your-repo.svg?style=social)](https://github.com/your-repo)
-[![GitHub forks](https://img.shields.io/github/forks/your-repo.svg?style=social)](https://github.com/your-repo)
+Personal project, actively used for my own job search. Not deployed as a hosted service.
 
-## Conclusion
+## License
 
-**ApplyFlow** is a powerful tool for recruiters and investors looking to streamline their job application process. With its modern architecture, efficient MVP, and advanced AI capabilities, we are confident that it will revolutionize the way you find top talent.
-
-Join us on this exciting journey as we continue to develop and improve **ApplyFlow**.
+MIT — see [LICENSE](LICENSE).
