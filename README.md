@@ -2,7 +2,7 @@
 
 **ApplyFlow** is a personal job-application automation tool for Australian software engineering roles. It parses a resume into a structured profile, scores scraped job listings against that profile with Claude, and auto-fills Quick Apply forms on Seek.com.au via Playwright.
 
-The repository contains two independent backend implementations of the same job-application domain — a FastAPI (Python) service used by the running app, and a Spring Boot (Java) service implementing the same `/api/v1/applications` API as a polyglot exercise.
+A Spring Boot (Java) implementation of the same `/api/v1/applications` domain exists as a separate polyglot exercise: [ApplyFlow-Java](https://github.com/krischuang/ApplyFlow-Java). It was originally developed in this repository and was split out since it has no dependency on the Python/Next.js app.
 
 ## How it Works
 
@@ -35,7 +35,6 @@ The repository contains two independent backend implementations of the same job-
 | Browser Automation | Playwright (Python) |
 | PDF Parsing | pypdf |
 | Container | Docker + Docker Compose |
-| Alternate backend | Spring Boot 3.2 (Java 21) — same domain, implemented independently |
 
 ## Setup Instructions
 
