@@ -1,7 +1,6 @@
 import enum
-from datetime import datetime
 from sqlalchemy import Boolean, Column, Date, DateTime, Enum, Integer, String, Text
-from database import Base
+from database import Base, utcnow_naive
 
 
 class ApplicationStatus(str, enum.Enum):
@@ -30,5 +29,5 @@ class JobApplication(Base):
     auto_applied = Column(Boolean, default=False)
     cover_letter_used = Column(Text)
     source_job_id = Column(String, unique=True, index=True)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utcnow_naive, nullable=False)
+    updated_at = Column(DateTime, default=utcnow_naive, onupdate=utcnow_naive, nullable=False)

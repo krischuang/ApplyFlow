@@ -1,6 +1,5 @@
-from datetime import datetime
 from sqlalchemy import Column, DateTime, Integer, String
-from database import Base
+from database import Base, utcnow_naive
 
 
 class JobPreferences(Base):
@@ -14,5 +13,5 @@ class JobPreferences(Base):
     seniority_level = Column(String, default="MID")
     max_applications_per_run = Column(Integer, default=5)
     match_score_threshold = Column(Integer, default=70)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utcnow_naive, nullable=False)
+    updated_at = Column(DateTime, default=utcnow_naive, onupdate=utcnow_naive, nullable=False)

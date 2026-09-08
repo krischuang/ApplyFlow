@@ -1,6 +1,5 @@
-from datetime import datetime
 from sqlalchemy import Column, DateTime, Integer, String, Text
-from database import Base
+from database import Base, utcnow_naive
 
 
 class UserProfile(Base):
@@ -16,5 +15,5 @@ class UserProfile(Base):
     education_summary = Column(Text)
     raw_resume_text = Column(Text)
     resume_file_path = Column(String)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=utcnow_naive, nullable=False)
+    updated_at = Column(DateTime, default=utcnow_naive, onupdate=utcnow_naive, nullable=False)
