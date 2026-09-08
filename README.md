@@ -1,12 +1,12 @@
 # ApplyFlow
 
-**ApplyFlow** is a personal job-application automation tool for Australian software engineering roles. It parses a resume into a structured profile, scores scraped job listings against that profile with Claude, and auto-fills Quick Apply forms on Seek.com.au via Playwright.
+**ApplyFlow** doesn't just track job applications — it submits them. It scrapes listings from Seek.com.au, scores each one against your resume with Claude, and drives Playwright through the real Quick Apply form, submit button included.
 
 A Spring Boot (Java) implementation of the same `/api/v1/applications` domain exists as a separate polyglot exercise: [ApplyFlow-Java](https://github.com/krischuang/ApplyFlow-Java). It was originally developed in this repository and was split out since it has no dependency on the Python/Next.js app.
 
 ## How it Works
 
-1. **Upload Your Resume**: Our advanced AI parses your PDF resume into a structured profile.
+1. **Upload Your Resume**: Claude parses your PDF resume into a structured profile.
 2. **Set Preferences**: Define your preferences, including location, salary range, tech stack, and match score threshold.
 3. **Start an Auto-Apply Run**: Initiate the system to scrape Seek.com.au for software engineer roles, score each job against your profile using Claude AI (0–100), and auto-fill and submit Quick Apply forms via Playwright browser automation.
 4. **Track Your Applications**: Monitor every application in real-time from the dashboard.
@@ -97,6 +97,16 @@ docker compose up --build
 
 1. **Cheap Filtering**: Initial filtering based on location, salary range, and tech stack is performed locally.
 2. **LLM Scoring**: Advanced scoring using Claude AI ensures that only the most relevant jobs are submitted.
+
+## Testing
+
+```bash
+cd backend
+pip install -r requirements.txt
+python -m pytest
+```
+
+10 tests cover the applications CRUD API against an in-memory SQLite database — no real Postgres or Anthropic API key needed to run them.
 
 ## Status
 
