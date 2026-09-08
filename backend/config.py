@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     anthropic_model: str = "claude-sonnet-4-6"
     resume_storage_path: str = "./resumes"
     seek_max_jobs_per_run: int = 20
+    playwright_headless: bool = True
 
 
 settings = Settings()

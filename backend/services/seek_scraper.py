@@ -62,7 +62,7 @@ def scrape_jobs(location: str) -> list[ScrapedJob]:
     jobs: list[ScrapedJob] = []
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True, args=CHROMIUM_ARGS)
+            browser = p.chromium.launch(headless=settings.playwright_headless, args=CHROMIUM_ARGS)
             page = browser.new_page(user_agent=USER_AGENT)
 
             slug = _to_seek_slug(location)
@@ -107,7 +107,7 @@ def scrape_jobs(location: str) -> list[ScrapedJob]:
 def enrich_with_description(job: ScrapedJob) -> ScrapedJob:
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True, args=CHROMIUM_ARGS)
+            browser = p.chromium.launch(headless=settings.playwright_headless, args=CHROMIUM_ARGS)
             page = browser.new_page(user_agent=USER_AGENT)
             page.goto(job.job_url, wait_until="domcontentloaded")
             page.wait_for_timeout(2000)

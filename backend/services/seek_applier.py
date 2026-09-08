@@ -1,6 +1,7 @@
 import logging
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from config import settings
 from services.seek_scraper import ScrapedJob, USER_AGENT, CHROMIUM_ARGS
 
 logger = logging.getLogger(__name__)
@@ -11,7 +12,7 @@ def apply(job: ScrapedJob, profile: dict, cover_letter: str) -> bool:
     try:
         with sync_playwright() as p:
             context = p.chromium.launch(
-                headless=True, args=CHROMIUM_ARGS
+                headless=settings.playwright_headless, args=CHROMIUM_ARGS
             ).new_context(user_agent=USER_AGENT)
             page = context.new_page()
             page.goto(job.job_url, wait_until="domcontentloaded")
