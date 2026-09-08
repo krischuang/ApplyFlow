@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from database import engine, Base
 from routers import applications, profile, auto_apply
 
@@ -27,3 +28,8 @@ app.include_router(auto_apply.router, prefix="/api/v1/auto-apply", tags=["Auto A
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse(url="/docs")
