@@ -1,5 +1,7 @@
 # ApplyFlow
 
+[![CI](https://github.com/krischuang/ApplyFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/krischuang/ApplyFlow/actions/workflows/ci.yml)
+
 **ApplyFlow** doesn't just track job applications — it submits them. It scrapes listings from Seek.com.au, scores each one against your resume with Claude, and drives Playwright through the real Quick Apply form, submit button included.
 
 A Spring Boot (Java) implementation of the same `/api/v1/applications` domain exists as a separate polyglot exercise: [ApplyFlow-Java](https://github.com/krischuang/ApplyFlow-Java). It was originally developed in this repository and was split out since it has no dependency on the Python/Next.js app.
